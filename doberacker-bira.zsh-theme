@@ -21,16 +21,33 @@ conda_info () {
 	fi
 }
 
+is_docker() {
+  [[ -f /.dockerenv ]] && return 0
+  grep -qE '/docker/' /proc/1/cgroup && return 0
+  return 1
+}
+
+docker_info () {
+  if (( is_docker )); then
+  # you can swap out 🐳 for any glyph you have in your powerline font
+  echo '🐳 '
+else
+  echo ''
+fi
+}
+
+
 local vcs_branch='$(git_prompt_info)$(hg_prompt_info)'
 local rvm_ruby='$(ruby_prompt_info)'
 local venv_prompt='$(virtualenv_prompt_info)'
 local rob_folders_prompt='$(rob_folders_prompt_info)'
 local ros_version_prompt='$(ros_version_info)'
 local conda_env_prompt='$(conda_info)'
+local docker_info_prompt='$(docker_info)'
 
 ZSH_THEME_RVM_PROMPT_OPTIONS="i v g"
 
-PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}${conda_env_prompt}${ros_version_prompt}${rob_folders_prompt}
+PROMPT="╭─${user_host}${docker_info_prompt}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}${conda_env_prompt}${ros_version_prompt}${rob_folders_prompt}
 ╰─%B${user_symbol}%b "
 RPROMPT="%B${return_code}%b"
 

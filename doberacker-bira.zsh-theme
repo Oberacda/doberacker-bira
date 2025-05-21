@@ -23,17 +23,15 @@ conda_info () {
 
 is_docker() {
   [[ -f /.dockerenv ]] && return 0
-#  grep -qE '/docker/' /proc/1/cgroup && return 0
   return 1
 }
 
 docker_info () {
   if (( is_docker )); then
-  # you can swap out 🐳 for any glyph you have in your powerline font
-  echo '🐳 '
-else
-  echo ''
-fi
+          echo '🐳 '
+  else
+          echo ''
+  fi
 }
 
 

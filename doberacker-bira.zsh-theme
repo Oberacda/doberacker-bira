@@ -21,16 +21,12 @@ conda_info () {
 	fi
 }
 
-is_docker() {
-  [[ -f /.dockerenv ]] && return 0
-  return 1
-}
 
 docker_info () {
-  if (( is_docker )); then
-          echo '🐳 '
+  if [[ -f /.dockerenv ]]; then
+          echo "🐳 "
   else
-          echo ''
+          echo ""
   fi
 }
 

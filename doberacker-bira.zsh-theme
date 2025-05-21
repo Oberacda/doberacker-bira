@@ -23,7 +23,7 @@ conda_info () {
 
 is_docker() {
   [[ -f /.dockerenv ]] && return 0
-  grep -qE '/docker/' /proc/1/cgroup && return 0
+#  grep -qE '/docker/' /proc/1/cgroup && return 0
   return 1
 }
 

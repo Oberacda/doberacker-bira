@@ -20,6 +20,11 @@ conda_info () {
           echo "%{$fg[green]%}‹ ${CONDA_DEFAULT_ENV}› %{$reset_color%}"
 	fi
 }
+pixi_info () {
+	if (( ${+PIXI_PROJECT_NAME} )); then
+          echo "%{$fg[orange]%}‹ ${PIXI_PROJECT_NAME} - ${PIXI_PROJECT_VERSION}› %{$reset_color%}"
+	fi
+}
 
 
 docker_info () {
@@ -38,10 +43,11 @@ local rob_folders_prompt='$(rob_folders_prompt_info)'
 local ros_version_prompt='$(ros_version_info)'
 local conda_env_prompt='$(conda_info)'
 local docker_info_prompt='$(docker_info)'
+local pixi_info_prompt='$(pixi_info)'
 
 ZSH_THEME_RVM_PROMPT_OPTIONS="i v g"
 
-PROMPT="╭─${user_host}${docker_info_prompt}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}${conda_env_prompt}${ros_version_prompt}${rob_folders_prompt}
+PROMPT="╭─${user_host}${docker_info_prompt}${current_dir}${rvm_ruby}${vcs_branch}${pixi_info_prompt}${venv_prompt}${conda_env_prompt}${ros_version_prompt}${rob_folders_prompt}
 ╰─%B${user_symbol}%b "
 RPROMPT="%B${return_code}%b"
 

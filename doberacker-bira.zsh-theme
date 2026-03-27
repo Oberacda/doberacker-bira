@@ -22,7 +22,7 @@ conda_info () {
 }
 pixi_info () {
 	if (( ${+PIXI_PROJECT_NAME} )); then
-          echo "%{$fg[orange]%}‹ ${PIXI_PROJECT_NAME} - ${PIXI_PROJECT_VERSION}› %{$reset_color%}"
+          echo "%{$fg[yellow]%}‹ ${PIXI_PROJECT_NAME} - ${PIXI_PROJECT_VERSION}› %{$reset_color%}"
 	fi
 }
 
